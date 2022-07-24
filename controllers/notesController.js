@@ -18,16 +18,21 @@ const insertNote = function(req,res) {
             return res.status(500).json({err});
         }
         if(title && text) {
-            let noteJSONData = JSON.parse(data);
-            const newId = noteJSONData[noteJSONData.length-1].id + 1;
+            let notesData = JSON.parse(data);
+            let newId;
+            if(notesData.length === 0) {
+                newId = 0;
+            } else {
+                newId = notesData[notesData.length-1].id + 1;
+            }
             console.log(newId);
             const newNote = {
                 title,
                 text,
                 id: newId
             }
-            noteJSONData.push(newNote);
-            fs.writeFile(path.join(__dirname,'./../db','db.json'), JSON.stringify(noteJSONData), (err,data) => {
+            notesData.push(newNote);
+            fs.writeFile(path.join(__dirname,'./../db','db.json'), JSON.stringify(notesData), (err,data) => {
                 if(err) {
                     console.log(err);
                     res.status(500).json("Error in posting note");
@@ -53,13 +58,13 @@ const deleteNoteById = function(req,res) {
         if(err) {
             return res.status(400).json({err});
         }
-        let dataObj = JSON.parse(data);
+        let notesData = JSON.parse(data);
         let dataPostDelete = [];
         let deletedNote;
-        for(let i=0; i<dataObj.length; i++) {
-            if(dataObj[i].id === deleteId) {
-                deletedNote = dataObj[i];
-                dataPostDelete = dataObj.slice(0,i).concat(dataObj.slice(i+1,dataObj.length));
+        for(let i=0; i<notesData.length; i++) {
+            if(notesData[i].id === deleteId) {
+                deletedNote = notesData[i];
+                dataPostDelete = notesData.slice(0,i).concat(notesData.slice(i+1,notesData.length));
                 break;
             }
         }
@@ -78,11 +83,24 @@ const deleteNoteById = function(req,res) {
 }
 
 const getNoteById = function(req,res) {
-
+    let getId = parseInt(req.params.noteId);
+    fs.readFile(path.join(__dirname,'./../db','db.json'), 'utf8', (err,data) => {
+        if(err) {
+            return res.status(400).json({err});
+        }
+        notesData = JSON.parse(data);
+        let getNote;
+        for(let i=0; i<notesData.length; i++) {
+            if(notesData[i].id === getId) {
+                getNote = notesData[i];
+            }
+        }
+        if(getNote !== undefined) {
+            res.json(getNote);
+        } else {
+            res.status(404).json("Cannot find note");
+        }
+    });
 }
 
-const updateNoteById = function(req,res) {
-
-}
-
-module.exports = {getNotes, insertNote, deleteNoteById, getNoteById, updateNoteById};
+module.exports = {getNotes, insertNote, deleteNoteById, getNoteById};
