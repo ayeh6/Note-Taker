@@ -6,7 +6,6 @@ router.route('/')
     .post(notesController.insertNote);
 
 router.route('/:noteId')
-    .delete(notesController.deleteNoteById)
-    .get(notesController.getNoteById);
+    .delete(notesController.deleteNoteById);
 
 module.exports = router;

@@ -82,25 +82,4 @@ const deleteNoteById = function(req,res) {
     });
 }
 
-const getNoteById = function(req,res) {
-    let getId = parseInt(req.params.noteId);
-    fs.readFile(path.join(__dirname,'./../db','db.json'), 'utf8', (err,data) => {
-        if(err) {
-            return res.status(400).json({err});
-        }
-        notesData = JSON.parse(data);
-        let getNote;
-        for(let i=0; i<notesData.length; i++) {
-            if(notesData[i].id === getId) {
-                getNote = notesData[i];
-            }
-        }
-        if(getNote !== undefined) {
-            res.json(getNote);
-        } else {
-            res.status(404).json("Cannot find note");
-        }
-    });
-}
-
-module.exports = {getNotes, insertNote, deleteNoteById, getNoteById};
+module.exports = {getNotes, insertNote, deleteNoteById};
