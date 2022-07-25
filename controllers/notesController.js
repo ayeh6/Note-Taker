@@ -19,9 +19,11 @@ const insertNote = function(req,res) {
         }
         if(title && text) {
             let notesData = JSON.parse(data);
+            console.log(notesData);
+            console.log(notesData.length);
             let newId;
-            if(notesData.length === 0) {
-                newId = 0;
+            if(notesData.length === undefined || notesData.length === 0) {
+                newId = 1;
             } else {
                 newId = notesData[notesData.length-1].id + 1;
             }
