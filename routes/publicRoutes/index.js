@@ -1,12 +1,8 @@
 const router = require('express').Router();
-const path = require('path');
+const publicController = require('./../../controllers/publicController');
 
-router.route('/notes').get((req,res) => {
-        res.sendFile(path.join(__dirname, './../../public/notes.html'));
-    });
+router.route('/notes').get(publicController.getNotesHTML);
 
-router.route('*').get((req,res) => {
-    res.sendFile(path.join(__dirname, './../../public/index.html'));
-});
+router.route('*').get(publicController.getIndexHTML);
 
 module.exports = router;

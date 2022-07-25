@@ -46,12 +46,12 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 ### Screenshot
 
-![](./screenshot.jpg)
+![](./screenshot.png)
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [Github Repository](https://github.com/ayeh6/Note-Taker)
+- Live Site URL: [Live Link](https://yeh-note-taker.herokuapp.com/)
 
 ## My process
 
@@ -59,35 +59,31 @@ THEN I am presented with empty fields to enter a new note title and the note’s
 
 - HTML5
 - CSS
+- Javascript
+- Node
+- Express
 
 ### What I learned
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+Biggest thing I learned is how to create routes and how it modularizes then code. This simplifies the server.js code from instead of needing multiple lines for different get requests, it just takes one line. But that also requires making multiple files and directories for each path.
 
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
+Also to make the code more modular, I separated the GET, POST, DELETE request functions to a separate controller file in its own directory. This makes the routes folder and files just for routing, while the controller files have the functionality and pass that functionality to the routes.
+
+As for the GET, POST, and DELETE requests, it was just a lot of using fs for reading files and writing files since the application uses a JSON file for its database.
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+As for continued development, I would like to implement a PATCH request to update a note, this would probably require some work on the front-end such as making the selected note become a text-entry where the input is the note already inside, or have an edit button to make the note a text entry. Then a PATCH request would be made to update the note at that certain id.
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+- [MDN](https://developer.mozilla.org/en-US/) - MDN helped a bit to refresh my memory on certain javascript concepts such as destructuring and array manipulation functions.
 
 ## Author
 
 - Website - [Andrew Yeh](https://ayeh6.github.io/Yeh-Andrew-Portfolio-Website/)
 - LinkedIn - [/in/ayeh6](https://www.linkedin.com/in/ayeh6/)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
 ## Acknowledgments
+
+I would like to acknowledge Manny for having great code the past few weeks when teaching these concepts using mini-projects. Having all that code on slack and github helped me understand how the server works and how Express works.
