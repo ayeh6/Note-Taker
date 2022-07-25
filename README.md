@@ -1,4 +1,4 @@
-# Project Name - change to the name of your project
+# Note Taker
 
 ## Table of contents
 
